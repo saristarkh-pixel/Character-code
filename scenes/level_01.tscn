@@ -1,0 +1,73 @@
+[gd_scene format=4 uid="uid://bttsyfbfk3m74"]
+
+[ext_resource type="TileSet" uid="uid://dw8nxmvdecw6l" path="res://assets/tilesets/ground_tileset.tres" id="1_tiles"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="Script" uid="uid://d2xexonjx85ud" path="res://scripts/level_terrain.gd" id="3_terrain"]
+[ext_resource type="Texture2D" uid="uid://b7jp6ope46ucn" path="res://assets/sprites/props/Sprite-House.png" id="4_house"]
+[ext_resource type="Texture2D" uid="uid://d3pfx4ijnwi7m" path="res://assets/sprites/props/Sprite-Tree.png" id="5_tree"]
+[ext_resource type="Texture2D" uid="uid://csfm7ksdaa2cf" path="res://assets/sprites/props/Sprite-bushess.png" id="6_bush"]
+[ext_resource type="Texture2D" uid="uid://de2vmttbxec1p" path="res://assets/sprites/props/Sprite-Full Rocket sprites.png" id="7_rocket"]
+[ext_resource type="Texture2D" uid="uid://bwpv48a623d0d" path="res://assets/sprites/items/Sprite-Here is honey.png" id="8_hive"]
+[ext_resource type="Texture2D" uid="uid://cymumbonosxv" path="res://assets/sprites/items/Sprite-Honey sot.png" id="9_honey"]
+
+[node name="Level01" type="Node2D" unique_id=5847467]
+
+[node name="Terrain" type="TileMapLayer" parent="." unique_id=307661459]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAAMAAAABAAAAAAAAAAQAAAAAAAIAAAARAAQAAAAAAAAAAAASAAQAAAAAAAAAAAATAAQAAAAAAAAAAAAUAAQAAAAAAAAAAAAVAAQAAAABAAAAAAAAAAUAAAABAAIAAAAQAAUAAAAAAAAAAAARAAUAAAAAAAIAAAASAAUAAAABAAIAAAATAAUAAAABAAEAAAAUAAUAAAAAAAIAAAAVAAUAAAABAAIAAAAAAAYAAAABAAEAAAAPAAYAAAAAAAAAAAAQAAYAAAAAAAIAAAARAAYAAAABAAIAAAASAAYAAAABAAEAAAATAAYAAAAAAAIAAAAUAAYAAAABAAIAAAAVAAYAAAABAAEAAAAAAAcAAAAAAAIAAAAOAAcAAAAAAAAAAAAPAAcAAAAAAAIAAAAQAAcAAAABAAIAAAARAAcAAAABAAEAAAASAAcAAAAAAAIAAAATAAcAAAABAAIAAAAUAAcAAAABAAEAAAAVAAcAAAAAAAIAAAAAAAgAAAABAAIAAAANAAgAAAAAAAAAAAAOAAgAAAAAAAIAAAAPAAgAAAABAAIAAAAQAAgAAAABAAEAAAARAAgAAAAAAAIAAAASAAgAAAABAAIAAAATAAgAAAABAAEAAAAUAAgAAAAAAAIAAAAVAAgAAAABAAIAAAAAAAkAAAABAAEAAAAMAAkAAAAAAAAAAAANAAkAAAAAAAIAAAAOAAkAAAABAAIAAAAPAAkAAAABAAEAAAAQAAkAAAAAAAIAAAARAAkAAAABAAIAAAASAAkAAAABAAEAAAATAAkAAAAAAAIAAAAUAAkAAAABAAIAAAAVAAkAAAABAAEAAAAAAAoAAAAAAAIAAAABAAoAAAAAAAAAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAABAAAAAAALAAoAAAAAAAAAAAAMAAoAAAAAAAIAAAANAAoAAAABAAIAAAAOAAoAAAABAAEAAAAPAAoAAAAAAAIAAAAQAAoAAAABAAIAAAARAAoAAAABAAEAAAASAAoAAAAAAAIAAAATAAoAAAABAAIAAAAUAAoAAAABAAEAAAAVAAoAAAAAAAIAAAAAAAsAAAABAAIAAAABAAsAAAABAAEAAAACAAsAAAAAAAIAAAADAAsAAAABAAIAAAAEAAsAAAABAAEAAAAFAAsAAAAAAAIAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAIAAAAMAAsAAAABAAIAAAANAAsAAAABAAEAAAAOAAsAAAAAAAIAAAAPAAsAAAABAAIAAAAQAAsAAAABAAEAAAARAAsAAAAAAAIAAAASAAsAAAABAAIAAAATAAsAAAABAAEAAAAUAAsAAAAAAAIAAAAVAAsAAAABAAIAAAACAAUAAAAAAAAAAAABAAUAAAAAAAAAAAADAAUAAAABAAAAAAA=")
+tile_set = ExtResource("1_tiles")
+script = ExtResource("3_terrain")
+
+[node name="House" type="Sprite2D" parent="." unique_id=1893936549]
+position = Vector2(336, 850.5)
+scale = Vector2(3, 3)
+texture = ExtResource("4_house")
+region_enabled = true
+region_rect = Rect2(1, 1, 144, 73)
+
+[node name="Tree" type="Sprite2D" parent="." unique_id=1630955803]
+position = Vector2(1760, 298.5)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Bush" type="Sprite2D" parent="." unique_id=586394133]
+position = Vector2(760, 1011)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Rocket" type="Sprite2D" parent="." unique_id=56377743]
+position = Vector2(190, 438)
+scale = Vector2(3, 3)
+texture = ExtResource("7_rocket")
+region_enabled = true
+region_rect = Rect2(20, 1, 17, 28)
+
+[node name="Hive" type="Sprite2D" parent="." unique_id=847542106]
+position = Vector2(1900, 349.5)
+scale = Vector2(3, 3)
+texture = ExtResource("8_hive")
+region_enabled = true
+region_rect = Rect2(1, 1, 23, 23)
+
+[node name="Honey1" type="Sprite2D" parent="." unique_id=208540869]
+position = Vector2(1899, 277)
+scale = Vector2(3, 3)
+texture = ExtResource("9_honey")
+region_enabled = true
+region_rect = Rect2(1, 1, 13, 15)
+
+[node name="LabelMoon" type="Label" parent="." unique_id=1857756503]
+offset_left = 980.0
+offset_top = 110.0
+offset_right = 1320.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 52
+text = "MOON"
+
+[node name="Player" parent="." unique_id=399087604 instance=ExtResource("2_player")]
+position = Vector2(288, 830)
