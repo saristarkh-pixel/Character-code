@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://bykhxbrl7tayf"]
+
+[ext_resource type="Script" uid="uid://dgxbmqf2f1xbk" path="res://scripts/player.gd" id="1_bvhbk"]
+[ext_resource type="Texture2D" uid="uid://brvlytnamb1tx" path="res://assets/sprites/player/wall_grab/Sprite-Hook animation.png" id="17_202ut"]
+[ext_resource type="PackedScene" path="res://scenes/speech.tscn" id="speech_scene"]
+[ext_resource type="Texture2D" uid="uid://j1705lme78ee" path="res://assets/sprites/player/Sprite-Full Idle animation end.png" id="strip_idle"]
+[ext_resource type="Texture2D" uid="uid://b2gwphevbqfy3" path="res://assets/sprites/player/Sprite-Full jump animation end.png" id="strip_jump"]
+[ext_resource type="Texture2D" uid="uid://c51ybyuroairp" path="res://assets/sprites/player/Sprite-Full run animation end.png" id="strip_run"]
+[ext_resource type="Texture2D" uid="uid://cetbgtbxwudnm" path="res://assets/sprites/player/Sprite-Full wall_slide animation end.png" id="strip_wall_slide"]
+
+[sub_resource type="AtlasTexture" id="at_idle_0"]
+atlas = ExtResource("strip_idle")
+region = Rect2(13, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_idle_1"]
+atlas = ExtResource("strip_idle")
+region = Rect2(47, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_idle_2"]
+atlas = ExtResource("strip_idle")
+region = Rect2(81, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_idle_3"]
+atlas = ExtResource("strip_idle")
+region = Rect2(115, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_jump_0"]
+atlas = ExtResource("strip_jump")
+region = Rect2(13, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_jump_1"]
+atlas = ExtResource("strip_jump")
+region = Rect2(47, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_jump_2"]
+atlas = ExtResource("strip_jump")
+region = Rect2(81, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_jump_3"]
+atlas = ExtResource("strip_jump")
+region = Rect2(115, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_jump_4"]
+atlas = ExtResource("strip_jump")
+region = Rect2(149, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_run_0"]
+atlas = ExtResource("strip_run")
+region = Rect2(13, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_run_1"]
+atlas = ExtResource("strip_run")
+region = Rect2(47, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_run_2"]
+atlas = ExtResource("strip_run")
+region = Rect2(81, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_run_3"]
+atlas = ExtResource("strip_run")
+region = Rect2(115, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_wall_slide_0"]
+atlas = ExtResource("strip_wall_slide")
+region = Rect2(13, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_wall_slide_1"]
+atlas = ExtResource("strip_wall_slide")
+region = Rect2(47, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_wall_slide_2"]
+atlas = ExtResource("strip_wall_slide")
+region = Rect2(81, 5, 22, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ic42b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_idle_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_idle_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_idle_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_idle_3")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("at_jump_0")
+}, {
+"duration": 1.5,
+"texture": SubResource("at_jump_1")
+}, {
+"duration": 0.6,
+"texture": SubResource("at_jump_2")
+}, {
+"duration": 1.5,
+"texture": SubResource("at_jump_3")
+}, {
+"duration": 0.6,
+"texture": SubResource("at_jump_4")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_run_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_run_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_run_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_run_3")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_202ut")
+}],
+"loop": 1,
+"name": &"wall_grab",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_wall_slide_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_wall_slide_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_wall_slide_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_wall_slide_1")
+}],
+"loop": 1,
+"name": &"wall_slide",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8c8i"]
+size = Vector2(57, 61)
+
+[node name="Player" type="CharacterBody2D" unique_id=508083523]
+script = ExtResource("1_bvhbk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=850557511]
+position = Vector2(0, 2)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ic42b")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.4249862
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1350229227]
+position = Vector2(-1.5, 6.5)
+shape = SubResource("RectangleShape2D_d8c8i")
+
+[node name="RayLeftTop" type="RayCast2D" parent="." unique_id=1340796850]
+position = Vector2(10, -20)
+target_position = Vector2(30, 0)
+collision_mask = 3
+
+[node name="RayLeftMid" type="RayCast2D" parent="." unique_id=1303865271]
+position = Vector2(10, 5)
+target_position = Vector2(30, 0)
+collision_mask = 3
+
+[node name="RayLeftBottom" type="RayCast2D" parent="." unique_id=1648429147]
+position = Vector2(12, 32)
+target_position = Vector2(30, 0)
+collision_mask = 3
+
+[node name="RayRightTop" type="RayCast2D" parent="." unique_id=473160762]
+position = Vector2(-16, -18)
+target_position = Vector2(-30, 0)
+collision_mask = 3
+
+[node name="RayRightMid" type="RayCast2D" parent="." unique_id=670918944]
+position = Vector2(-15, 8)
+target_position = Vector2(-30, 0)
+collision_mask = 3
+
+[node name="RayRightBottom" type="RayCast2D" parent="." unique_id=1512721202]
+position = Vector2(-15, 32)
+target_position = Vector2(-30, 0)
+collision_mask = 3
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2111440346]
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.15
+drag_right_margin = 0.15
+
+[node name="Speech" parent="." unique_id=1810207962 instance=ExtResource("speech_scene")]

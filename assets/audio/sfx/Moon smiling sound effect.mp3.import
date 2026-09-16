@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cpsmu6wmhma4c"
+path="res://.godot/imported/Moon smiling sound effect.mp3-37959ed33fd2b921989e32dacb87c46c.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Moon smiling sound effect.mp3"
+dest_files=["res://.godot/imported/Moon smiling sound effect.mp3-37959ed33fd2b921989e32dacb87c46c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

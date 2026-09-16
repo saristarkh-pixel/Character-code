@@ -1,0 +1,689 @@
+[gd_scene format=4 uid="uid://v1i1wk6dp4oj"]
+
+[ext_resource type="Script" uid="uid://ywcajvqo3c62" path="res://scripts/menu/main_menu.gd" id="1_menu"]
+[ext_resource type="Theme" uid="uid://cgu8palqfempk" path="res://assets/ui/main_theme.tres" id="2_theme"]
+[ext_resource type="TileSet" uid="uid://dw8nxmvdecw6l" path="res://assets/tilesets/ground_tileset.tres" id="3_tiles"]
+[ext_resource type="Texture2D" uid="uid://b7jp6ope46ucn" path="res://assets/sprites/props/Sprite-House.png" id="4_house"]
+[ext_resource type="Texture2D" uid="uid://d3pfx4ijnwi7m" path="res://assets/sprites/props/Sprite-Tree.png" id="5_tree"]
+[ext_resource type="Texture2D" uid="uid://csfm7ksdaa2cf" path="res://assets/sprites/props/Sprite-bushess.png" id="6_bush"]
+[ext_resource type="Texture2D" uid="uid://j1705lme78ee" path="res://assets/sprites/player/Sprite-Full Idle animation end.png" id="10_1ajci"]
+[ext_resource type="Texture2D" uid="uid://b2gwphevbqfy3" path="res://assets/sprites/player/Sprite-Full jump animation end.png" id="11_7b55j"]
+[ext_resource type="Texture2D" uid="uid://c51ybyuroairp" path="res://assets/sprites/player/Sprite-Full run animation end.png" id="12_5pajh"]
+[ext_resource type="Texture2D" uid="uid://brvlytnamb1tx" path="res://assets/sprites/player/wall_grab/Sprite-Hook animation.png" id="13_j7ex8"]
+[ext_resource type="Texture2D" uid="uid://ksipigom6xmc" path="res://assets/sprites/background/sky_day.png" id="13_skyday"]
+[ext_resource type="Texture2D" uid="uid://cetbgtbxwudnm" path="res://assets/sprites/player/Sprite-Full wall_slide animation end.png" id="14_a8gd2"]
+[ext_resource type="Texture2D" uid="uid://vsm0d5pobhy0" path="res://assets/sprites/background/fog_day.png" id="15_fogday"]
+[ext_resource type="Texture2D" uid="uid://dxqh0wwtg3iyb" path="res://assets/sprites/moon/moon_day.png" id="17_moonday"]
+[ext_resource type="Material" path="res://assets/shaders/tree_wind.tres" id="20_treewind"]
+[ext_resource type="Material" path="res://assets/shaders/bush_wind.tres" id="21_bushwind"]
+
+[sub_resource type="AtlasTexture" id="at_idle_0"]
+atlas = ExtResource("10_1ajci")
+region = Rect2(13, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_idle_1"]
+atlas = ExtResource("10_1ajci")
+region = Rect2(47, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_idle_2"]
+atlas = ExtResource("10_1ajci")
+region = Rect2(81, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_idle_3"]
+atlas = ExtResource("10_1ajci")
+region = Rect2(115, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_jump_0"]
+atlas = ExtResource("11_7b55j")
+region = Rect2(13, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_jump_1"]
+atlas = ExtResource("11_7b55j")
+region = Rect2(47, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_jump_2"]
+atlas = ExtResource("11_7b55j")
+region = Rect2(81, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_jump_3"]
+atlas = ExtResource("11_7b55j")
+region = Rect2(115, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_jump_4"]
+atlas = ExtResource("11_7b55j")
+region = Rect2(149, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_run_0"]
+atlas = ExtResource("12_5pajh")
+region = Rect2(13, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_run_1"]
+atlas = ExtResource("12_5pajh")
+region = Rect2(47, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_run_2"]
+atlas = ExtResource("12_5pajh")
+region = Rect2(81, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_run_3"]
+atlas = ExtResource("12_5pajh")
+region = Rect2(115, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_wall_slide_0"]
+atlas = ExtResource("14_a8gd2")
+region = Rect2(13, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_wall_slide_1"]
+atlas = ExtResource("14_a8gd2")
+region = Rect2(47, 5, 22, 27)
+
+[sub_resource type="AtlasTexture" id="at_wall_slide_2"]
+atlas = ExtResource("14_a8gd2")
+region = Rect2(81, 5, 22, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hstxw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_idle_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_idle_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_idle_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_idle_3")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("at_jump_0")
+}, {
+"duration": 1.5,
+"texture": SubResource("at_jump_1")
+}, {
+"duration": 0.6,
+"texture": SubResource("at_jump_2")
+}, {
+"duration": 1.5,
+"texture": SubResource("at_jump_3")
+}, {
+"duration": 0.6,
+"texture": SubResource("at_jump_4")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_run_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_run_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_run_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_run_3")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_j7ex8")
+}],
+"loop": 1,
+"name": &"wall_grab",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_wall_slide_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_wall_slide_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_wall_slide_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_wall_slide_1")
+}],
+"loop": 1,
+"name": &"wall_slide",
+"speed": 6.0
+}]
+
+[node name="MainMenu" type="Node2D" unique_id=1580262864]
+script = ExtResource("1_menu")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1012972563]
+
+[node name="Control" type="Control" parent="UI" unique_id=1443670106]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+
+[node name="Backdrop" type="Node2D" parent="UI/Control" unique_id=2095888262]
+
+[node name="Sky" type="Sprite2D" parent="UI/Control/Backdrop" unique_id=921234995]
+position = Vector2(576, 324)
+scale = Vector2(4, 4)
+texture = ExtResource("13_skyday")
+
+[node name="Moon" type="Sprite2D" parent="UI/Control/Backdrop" unique_id=1800485277]
+position = Vector2(944, 128)
+scale = Vector2(4, 4)
+texture = ExtResource("17_moonday")
+region_enabled = true
+region_rect = Rect2(1, 1, 31, 31)
+
+[node name="Clouds" type="Sprite2D" parent="UI/Control/Backdrop" unique_id=1980309582]
+position = Vector2(576, 324)
+scale = Vector2(4, 4)
+texture = ExtResource("15_fogday")
+
+[node name="bg_tree" type="Node2D" parent="UI/Control/Backdrop" unique_id=605294192]
+
+[node name="Tree8" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=558916311]
+material = ExtResource("20_treewind")
+position = Vector2(195, 469.5)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree7" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=2089911051]
+material = ExtResource("20_treewind")
+position = Vector2(301, 478.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree10" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=1236749516]
+material = ExtResource("20_treewind")
+position = Vector2(18, 468.5)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree9" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=94057519]
+material = ExtResource("20_treewind")
+position = Vector2(99, 483)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree11" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=310896938]
+material = ExtResource("20_treewind")
+position = Vector2(1110, 481.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=539613505]
+material = ExtResource("20_treewind")
+position = Vector2(921, 482)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree12" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=2059173798]
+material = ExtResource("20_treewind")
+position = Vector2(1013, 472)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree2" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=1874539976]
+material = ExtResource("20_treewind")
+position = Vector2(817.00006, 465)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree3" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=222491104]
+material = ExtResource("20_treewind")
+position = Vector2(732, 485)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree4" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=1113973337]
+material = ExtResource("20_treewind")
+position = Vector2(621, 468)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree5" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=21514361]
+material = ExtResource("20_treewind")
+position = Vector2(512, 447.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Tree6" type="Sprite2D" parent="UI/Control/Backdrop/bg_tree" unique_id=1968499033]
+material = ExtResource("20_treewind")
+position = Vector2(408.00003, 471)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="BushesBack" type="Node2D" parent="UI/Control/Backdrop" unique_id=353510297]
+
+[node name="Bush" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1941861278]
+material = ExtResource("21_bushwind")
+position = Vector2(42, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush2" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=2108137513]
+material = ExtResource("21_bushwind")
+position = Vector2(122, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush3" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1751763475]
+material = ExtResource("21_bushwind")
+position = Vector2(208, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush16" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=528006036]
+material = ExtResource("21_bushwind")
+position = Vector2(156, 549)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush4" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1018892391]
+material = ExtResource("21_bushwind")
+position = Vector2(294, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush5" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=21689254]
+material = ExtResource("21_bushwind")
+position = Vector2(377, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush6" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1248178352]
+material = ExtResource("21_bushwind")
+position = Vector2(453, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush7" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1289975575]
+material = ExtResource("21_bushwind")
+position = Vector2(529, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush8" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=539675131]
+material = ExtResource("21_bushwind")
+position = Vector2(603, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush9" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1090785248]
+material = ExtResource("21_bushwind")
+position = Vector2(676, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush10" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=218678397]
+material = ExtResource("21_bushwind")
+position = Vector2(764, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush11" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1993457920]
+material = ExtResource("21_bushwind")
+position = Vector2(850, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush12" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=839592310]
+material = ExtResource("21_bushwind")
+position = Vector2(930, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush13" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1208708407]
+material = ExtResource("21_bushwind")
+position = Vector2(1009, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush14" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=443810670]
+material = ExtResource("21_bushwind")
+position = Vector2(1091, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush15" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=39212843]
+material = ExtResource("21_bushwind")
+position = Vector2(1091, 515)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush17" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1118531812]
+material = ExtResource("21_bushwind")
+position = Vector2(276, 563)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush18" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1793088995]
+material = ExtResource("21_bushwind")
+position = Vector2(369, 575)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush19" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=562452767]
+material = ExtResource("21_bushwind")
+position = Vector2(460, 579)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Bush20" type="Sprite2D" parent="UI/Control/Backdrop/BushesBack" unique_id=1648948809]
+material = ExtResource("21_bushwind")
+position = Vector2(59.00003, 559)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Houses" type="Node2D" parent="UI/Control/Backdrop" unique_id=145661718]
+
+[node name="House" type="Sprite2D" parent="UI/Control/Backdrop/Houses" unique_id=593059169]
+position = Vector2(880.00006, 449)
+scale = Vector2(3, 3)
+texture = ExtResource("4_house")
+region_enabled = true
+region_rect = Rect2(1, 1, 144, 73)
+
+[node name="TreesFront" type="Node2D" parent="UI/Control/Backdrop" unique_id=426332273]
+
+[node name="TreeFront" type="Sprite2D" parent="UI/Control/Backdrop/TreesFront" unique_id=1231617959]
+material = ExtResource("20_treewind")
+position = Vector2(1085, 397)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="BushesFront" type="Node2D" parent="UI/Control/Backdrop" unique_id=1223882971]
+
+[node name="BushFront3" type="Sprite2D" parent="UI/Control/Backdrop/BushesFront" unique_id=2073521847]
+material = ExtResource("21_bushwind")
+position = Vector2(1041, 463)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="BushFront4" type="Sprite2D" parent="UI/Control/Backdrop/BushesFront" unique_id=1620962529]
+material = ExtResource("21_bushwind")
+position = Vector2(1106, 466.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="BushFront5" type="Sprite2D" parent="UI/Control/Backdrop/BushesFront" unique_id=1275458361]
+material = ExtResource("21_bushwind")
+position = Vector2(1132, 519)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="BushFront" type="Sprite2D" parent="UI/Control/Backdrop/BushesFront" unique_id=398388741]
+material = ExtResource("21_bushwind")
+position = Vector2(997, 516)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="BushFront2" type="Sprite2D" parent="UI/Control/Backdrop/BushesFront" unique_id=1941894588]
+material = ExtResource("21_bushwind")
+position = Vector2(1070, 521)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Ground" type="TileMapLayer" parent="UI/Control/Backdrop" unique_id=1157433533]
+position = Vector2(0, 552)
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAAAAEAAAABAAIAAAABAAEAAAABAAIAAAACAAEAAAABAAIAAAADAAEAAAABAAIAAAAEAAEAAAABAAIAAAAFAAEAAAABAAIAAAAGAAEAAAABAAIAAAAHAAEAAAABAAIAAAAIAAEAAAABAAIAAAAJAAEAAAABAAIAAAAKAAEAAAABAAIAAAALAAEAAAABAAIAAAA=")
+tile_set = ExtResource("3_tiles")
+
+[node name="TreesBack" type="Node2D" parent="UI/Control/Backdrop" unique_id=1375888478]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/Control" unique_id=998057303]
+position = Vector2(624, 514)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_hstxw")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.17305908
+
+[node name="TitleLabel" type="Label" parent="UI/Control" unique_id=3043397]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 44.0
+offset_top = 91.0
+offset_right = -580.0
+offset_bottom = 209.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_colors/font_shadow_color = Color(0.11, 0.06, 0.05, 0.75)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 6
+theme_override_font_sizes/font_size = 82
+text = "Hungry Moon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="UI/Control" unique_id=859776469]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -429.0
+offset_top = -72.0
+offset_right = -129.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="StartButton" type="Button" parent="UI/Control/Buttons" unique_id=1020161531]
+layout_mode = 2
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="UI/Control/Buttons" unique_id=1582187174]
+layout_mode = 2
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="UI/Control/Buttons" unique_id=315514478]
+layout_mode = 2
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="UI/Control/Buttons" unique_id=1358610078]
+layout_mode = 2
+text = "Quit"
+
+[node name="Dim" type="ColorRect" parent="UI/Control" unique_id=1619553879]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.03, 0.03, 0.6)
+
+[node name="OptionsPanel" type="PanelContainer" parent="UI/Control" unique_id=1192834045]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -225.0
+offset_right = 240.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsBox" type="VBoxContainer" parent="UI/Control/OptionsPanel" unique_id=1943473060]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="OptionsTitle" type="Label" parent="UI/Control/OptionsPanel/OptionsBox" unique_id=602129747]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 38
+text = "Options"
+horizontal_alignment = 1
+
+[node name="MusicLabel" type="Label" parent="UI/Control/OptionsPanel/OptionsBox" unique_id=131381702]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="UI/Control/OptionsPanel/OptionsBox" unique_id=1646304845]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SfxLabel" type="Label" parent="UI/Control/OptionsPanel/OptionsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Sound effects"
+
+[node name="SfxSlider" type="HSlider" parent="UI/Control/OptionsPanel/OptionsBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="FullscreenButton" type="Button" parent="UI/Control/OptionsPanel/OptionsBox" unique_id=477743024]
+layout_mode = 2
+text = "Fullscreen: Off"
+
+[node name="BackButton" type="Button" parent="UI/Control/OptionsPanel/OptionsBox" unique_id=487034200]
+layout_mode = 2
+text = "Back"
+
+[node name="CreditsPanel" type="PanelContainer" parent="UI/Control" unique_id=1477421426]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -180.0
+offset_right = 240.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreditsBox" type="VBoxContainer" parent="UI/Control/CreditsPanel" unique_id=231747638]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="CreditsTitle" type="Label" parent="UI/Control/CreditsPanel/CreditsBox" unique_id=842593298]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 38
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="CreditsText" type="Label" parent="UI/Control/CreditsPanel/CreditsBox" unique_id=1596890819]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 22
+text = "Andrei Louise Amrinto
+Aristarkh
+
+Made in Godot 4.7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="UI/Control/CreditsPanel/CreditsBox" unique_id=291020569]
+layout_mode = 2
+text = "Back"

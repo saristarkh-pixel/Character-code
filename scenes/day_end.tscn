@@ -1,0 +1,260 @@
+[gd_scene load_steps=37 format=3]
+
+[ext_resource type="Script" path="res://scripts/day_end.gd" id="1_day_end"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cutscene/Sprite-Animation after day full version.png" id="2_strip"]
+
+[sub_resource type="AtlasTexture" id="at_day_end_0"]
+atlas = ExtResource("2_strip")
+region = Rect2(49, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_1"]
+atlas = ExtResource("2_strip")
+region = Rect2(258, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_2"]
+atlas = ExtResource("2_strip")
+region = Rect2(467, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_3"]
+atlas = ExtResource("2_strip")
+region = Rect2(676, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_4"]
+atlas = ExtResource("2_strip")
+region = Rect2(885, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_5"]
+atlas = ExtResource("2_strip")
+region = Rect2(1094, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_6"]
+atlas = ExtResource("2_strip")
+region = Rect2(1303, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_7"]
+atlas = ExtResource("2_strip")
+region = Rect2(1512, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_8"]
+atlas = ExtResource("2_strip")
+region = Rect2(1721, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_9"]
+atlas = ExtResource("2_strip")
+region = Rect2(1930, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_10"]
+atlas = ExtResource("2_strip")
+region = Rect2(2139, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_11"]
+atlas = ExtResource("2_strip")
+region = Rect2(2348, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_12"]
+atlas = ExtResource("2_strip")
+region = Rect2(2557, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_13"]
+atlas = ExtResource("2_strip")
+region = Rect2(2766, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_14"]
+atlas = ExtResource("2_strip")
+region = Rect2(2975, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_15"]
+atlas = ExtResource("2_strip")
+region = Rect2(3184, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_16"]
+atlas = ExtResource("2_strip")
+region = Rect2(3393, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_17"]
+atlas = ExtResource("2_strip")
+region = Rect2(3602, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_18"]
+atlas = ExtResource("2_strip")
+region = Rect2(3811, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_19"]
+atlas = ExtResource("2_strip")
+region = Rect2(4020, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_20"]
+atlas = ExtResource("2_strip")
+region = Rect2(4229, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_21"]
+atlas = ExtResource("2_strip")
+region = Rect2(4438, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_22"]
+atlas = ExtResource("2_strip")
+region = Rect2(4647, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_23"]
+atlas = ExtResource("2_strip")
+region = Rect2(4856, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_24"]
+atlas = ExtResource("2_strip")
+region = Rect2(5065, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_25"]
+atlas = ExtResource("2_strip")
+region = Rect2(5274, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_26"]
+atlas = ExtResource("2_strip")
+region = Rect2(5483, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_27"]
+atlas = ExtResource("2_strip")
+region = Rect2(5692, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_28"]
+atlas = ExtResource("2_strip")
+region = Rect2(5901, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_29"]
+atlas = ExtResource("2_strip")
+region = Rect2(6110, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_30"]
+atlas = ExtResource("2_strip")
+region = Rect2(6319, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_31"]
+atlas = ExtResource("2_strip")
+region = Rect2(6528, 2, 160, 90)
+
+[sub_resource type="AtlasTexture" id="at_day_end_32"]
+atlas = ExtResource("2_strip")
+region = Rect2(6737, 2, 160, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_day_end"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_day_end_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_17")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_20")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_22")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_23")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_24")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_28")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_29")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_30")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_31")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_day_end_32")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="DayEnd" type="CanvasLayer"]
+layer = 9
+script = ExtResource("1_day_end")
+
+[node name="Black" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_day_end")

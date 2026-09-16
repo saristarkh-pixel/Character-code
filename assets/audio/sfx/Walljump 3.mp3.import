@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8p68joi6wpay"
+path="res://.godot/imported/Walljump 3.mp3-8bda5c58f1abe9ea9433dcd2f397db24.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Walljump 3.mp3"
+dest_files=["res://.godot/imported/Walljump 3.mp3-8bda5c58f1abe9ea9433dcd2f397db24.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

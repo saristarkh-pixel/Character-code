@@ -1,0 +1,131 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/menu/pause_menu.gd" id="1_pause"]
+[ext_resource type="Theme" path="res://assets/ui/main_theme.tres" id="2_theme"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+layer = 10
+process_mode = 3
+script = ExtResource("1_pause")
+
+[node name="Root" type="Control" parent="."]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+
+[node name="Dim" type="ColorRect" parent="Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.03, 0.03, 0.65)
+
+[node name="Panel" type="PanelContainer" parent="Root"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = -280.0
+offset_top = -240.0
+offset_right = 280.0
+offset_bottom = 240.0
+
+[node name="PanelBox" type="VBoxContainer" parent="Root/Panel"]
+theme_override_constants/separation = 18
+
+[node name="PausedTitle" type="Label" parent="Root/Panel/PanelBox"]
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 36
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ControlsHeading" type="Label" parent="Root/Panel/PanelBox"]
+theme_override_colors/font_color = Color(0.702, 0.6, 0.46, 1)
+theme_override_font_sizes/font_size = 18
+text = "CONTROLS"
+horizontal_alignment = 1
+
+[node name="Controls" type="GridContainer" parent="Root/Panel/PanelBox"]
+size_flags_vertical = 3
+theme_override_constants/h_separation = 28
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="Key1" type="Label" parent="Root/Panel/PanelBox/Controls"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 20
+text = "A / D"
+horizontal_alignment = 2
+
+[node name="Action1" type="Label" parent="Root/Panel/PanelBox/Controls"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.976, 0.859, 0.576, 1)
+theme_override_font_sizes/font_size = 20
+text = "move"
+
+[node name="Key2" type="Label" parent="Root/Panel/PanelBox/Controls"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 20
+text = "Space / W"
+horizontal_alignment = 2
+
+[node name="Action2" type="Label" parent="Root/Panel/PanelBox/Controls"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.976, 0.859, 0.576, 1)
+theme_override_font_sizes/font_size = 20
+text = "jump"
+
+[node name="Key3" type="Label" parent="Root/Panel/PanelBox/Controls"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 20
+text = "jump on a wall"
+horizontal_alignment = 2
+
+[node name="Action3" type="Label" parent="Root/Panel/PanelBox/Controls"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.976, 0.859, 0.576, 1)
+theme_override_font_sizes/font_size = 20
+text = "climb up"
+
+[node name="Key4" type="Label" parent="Root/Panel/PanelBox/Controls"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 20
+text = "jump + A / D"
+horizontal_alignment = 2
+
+[node name="Action4" type="Label" parent="Root/Panel/PanelBox/Controls"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.976, 0.859, 0.576, 1)
+theme_override_font_sizes/font_size = 20
+text = "leap off the wall"
+
+[node name="Key5" type="Label" parent="Root/Panel/PanelBox/Controls"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 20
+text = "Esc"
+horizontal_alignment = 2
+
+[node name="Action5" type="Label" parent="Root/Panel/PanelBox/Controls"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.976, 0.859, 0.576, 1)
+theme_override_font_sizes/font_size = 20
+text = "pause"
+
+[node name="ResumeButton" type="Button" parent="Root/Panel/PanelBox"]
+text = "Resume"
+
+[node name="MenuButton" type="Button" parent="Root/Panel/PanelBox"]
+text = "Quit to menu"

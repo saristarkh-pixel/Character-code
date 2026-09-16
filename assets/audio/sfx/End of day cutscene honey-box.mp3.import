@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkya0oa8g4nli"
+path="res://.godot/imported/End of day cutscene honey-box.mp3-f5e6485d46ef05ed6158e336475bd0eb.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/End of day cutscene honey-box.mp3"
+dest_files=["res://.godot/imported/End of day cutscene honey-box.mp3-f5e6485d46ef05ed6158e336475bd0eb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

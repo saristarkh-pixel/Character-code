@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://bv0dm0fsh8u5"]
+
+[ext_resource type="Script" uid="uid://cw34cfpuprl6c" path="res://scripts/hud.gd" id="1_hud"]
+[ext_resource type="Theme" uid="uid://cgu8palqfempk" path="res://assets/ui/main_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://assets/sprites/items/honey_jar.png" id="3_honey"]
+[ext_resource type="Script" uid="uid://b61jpq8co62ug" path="res://scripts/ui/minimap.gd" id="4_minimap"]
+
+[node name="HUD" type="CanvasLayer" unique_id=436251425]
+script = ExtResource("1_hud")
+
+[node name="Root" type="Control" parent="." unique_id=1807819271]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+
+[node name="HoneyIcon" type="Sprite2D" parent="Root" unique_id=36023953]
+position = Vector2(52, 50)
+scale = Vector2(2, 2)
+texture = ExtResource("3_honey")
+region_enabled = true
+region_rect = Rect2(1, 1, 23, 28)
+
+[node name="HoneyCount" type="Label" parent="Root" unique_id=446148429]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 22.0
+offset_right = 302.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_colors/font_shadow_color = Color(0.078, 0.047, 0.043, 0.8)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 34
+text = "0 / 0"
+vertical_alignment = 1
+
+[node name="DayLabel" type="Label" parent="Root" unique_id=325551306]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -290.0
+offset_top = 212.0
+offset_right = -32.0
+offset_bottom = 256.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.976, 0.859, 0.576, 1)
+theme_override_colors/font_shadow_color = Color(0.078, 0.047, 0.043, 0.8)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 30
+text = "Day 1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ClockLabel" type="Label" parent="Root" unique_id=168295185]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_top = 26.0
+offset_right = 170.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_colors/font_shadow_color = Color(0.078, 0.047, 0.043, 0.8)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 62
+text = "1:10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintLabel" type="Label" parent="Root" unique_id=2054880864]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -98.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.976, 0.859, 0.576, 1)
+theme_override_colors/font_shadow_color = Color(0.078, 0.047, 0.043, 0.8)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+text = "A / D  move     Space  jump     E  use     M  map     Esc  pause
+jump on a wall to climb,  jump + A / D  to leap off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Minimap" type="Control" parent="Root" unique_id=933920264]
+anchors_preset = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -230.0
+offset_top = 22.0
+offset_right = -32.0
+offset_bottom = 220.0
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("4_minimap")
+
+[node name="FullMap" type="Control" parent="Root" unique_id=29227602]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_minimap")
+full = true
+
+[node name="Fade" type="ColorRect" parent="Root" unique_id=201922340]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
