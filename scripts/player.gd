@@ -3,8 +3,10 @@ extends CharacterBody2D
 # bounces off them for height. a wall in the "no_climb" group is solid but
 # cannot be slid on or bounced off.
 
-@export var speed: float = 200.0
-@export var jump_velocity: float = -660.0
+# sized for the map's 48px cells: a jump rises ~230px (about 5 cells) and a
+# running jump clears about 7 cells of gap
+@export var speed: float = 320.0
+@export var jump_velocity: float = -860.0
 @export var gravity: float = 1600.0
 # falling is faster than rising so the jump does not feel floaty
 @export var fall_gravity_multiplier: float = 1.55
@@ -19,12 +21,12 @@ extends CharacterBody2D
 
 # the bounce: jumping off a wall throws you away from it and upward, so
 # height is gained by zigzagging between two faces rather than scaling one.
-@export var wall_bounce_horizontal: float = 440.0
-@export var wall_bounce_vertical: float = -600.0
+@export var wall_bounce_horizontal: float = 700.0
+@export var wall_bounce_vertical: float = -780.0
 # input is ignored for this long after a bounce so the push actually travels
 @export var wall_bounce_lockout: float = 0.14
 # how fast any speed above `speed` bleeds off once you are steering again
-@export var air_drag: float = 850.0
+@export var air_drag: float = 1360.0
 
 # set by the cutscene while a scripted beat is playing. gravity and collision
 # keep running, we just stop reading the keyboard.
@@ -39,6 +41,9 @@ var last_wall_dir: int = 0
 # side of the wall we bounced off last. the same side twice in a row is
 # refused, so one face cannot be pogoed up. cleared on landing.
 var last_bounce_dir: int = 0
+# bounces in a row without touching the ground. the second one onward plays
+# the combo sound.
+var bounce_chain: int = 0
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 # three rays per side, so a wall still counts when only part of the body
@@ -52,6 +57,19 @@ var last_bounce_dir: int = 0
 @onready var ray_right_top: RayCast2D = $RayLeftTop
 @onready var ray_right_mid: RayCast2D = $RayLeftMid
 @onready var ray_right_bottom: RayCast2D = $RayLeftBottom
+# the orange thoughts above the head. level triggers and cutscenes talk
+# through this.
+@onready var speech: Node2D = $Speech
+
+# run frames where a foot lands
+const STEP_FRAMES: Array[int] = [1, 3]
+
+func _ready() -> void:
+	anim.frame_changed.connect(_on_frame_changed)
+
+func _on_frame_changed() -> void:
+	if anim.animation == "run" and anim.frame in STEP_FRAMES and is_on_floor():
+		Sfx.play("step")
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -64,6 +82,7 @@ func _physics_process(delta):
 		coyote_timer = coyote_time
 		# back on the ground, so either wall is fair game again
 		last_bounce_dir = 0
+		bounce_chain = 0
 	else:
 		coyote_timer -= delta
 
@@ -101,6 +120,7 @@ func _physics_process(delta):
 		jump_buffer_timer = 0.0
 		coyote_timer = 0.0
 		jumped = true
+		Sfx.play_move("jump")
 
 	# Отскок от стены
 	# jumping off a wall. the angle comes from the key you are holding, not from
@@ -112,6 +132,8 @@ func _physics_process(delta):
 		velocity.y = wall_bounce_vertical
 		last_bounce_dir = wall_dir
 		jump_buffer_timer = 0.0
+		bounce_chain += 1
+		Sfx.play_move("jump_combo" if bounce_chain > 1 else "walljump")
 		is_wall_sliding = false
 		# the push-off pose has its hands on the wall, so it faces the wall
 		anim.flip_h = wall_dir < 0

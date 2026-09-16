@@ -1,12 +1,21 @@
 extends Node
-# the scripted beats. each one takes the keyboard off the player, runs a
-# sequence, and hands it back. no framework, just awaits.
+# the scripted beats. no framework, just awaits. lines are spoken through the
+# player's speech, which types them above the head and zooms the camera in.
 
 @export var sky_fade: float = 2.0
 @export var moon_rise: float = 2.4
+# how long after the capsule sound starts the Moon reacts to it
+@export var capsule_time: float = 4.0
+# the look at a honey drop: how close, how long the camera takes to get there,
+# and how long it stays
+@export var focus_zoom: float = 1.6
+@export var focus_time: float = 0.6
+@export var focus_hold: float = 1.0
+# how long the camera takes to snap back from looking up when the chase starts
+@export var chase_snap: float = 0.12
 
 @onready var player: CharacterBody2D = $"../Player"
-@onready var dialogue: CanvasLayer = $"../Dialogue"
+@onready var speech: Node2D = $"../Player/Speech"
 @onready var camera: Camera2D = $"../Player/Camera2D"
 @onready var moon: AnimatedSprite2D = $"../Background/Moon/MoonSprite"
 @onready var sky_night: Sprite2D = $"../SkyLayer/SkyNight"
@@ -15,26 +24,47 @@ extends Node
 @onready var fog_day_mirror: Sprite2D = $"../Background/Fog/FogDayMirror"
 @onready var fog_night: Sprite2D = $"../Background/Fog/FogNight"
 @onready var fog_night_mirror: Sprite2D = $"../Background/Fog/FogNightMirror"
-@onready var house_lock: StaticBody2D = $"../HouseLock"
 
-# day 1. you are held at the house until this is over.
-func play_opening() -> void:
-	player.input_locked = true
+# day 1. the player wakes up in the house. they can walk off straight away,
+# the line just waits for the fade-in to finish.
+func play_opening(line: String) -> void:
 	await get_tree().create_timer(0.6, false).timeout
-	await dialogue.say("Another morning.")
-	await dialogue.say("The hive is up on the ridge. It always is.")
-	await dialogue.say("Collect the honey. Bring it home. Feed the Moon.")
-	await dialogue.say("That is how it goes.")
-	# the box that kept you indoors is not needed again
-	if is_instance_valid(house_lock):
-		house_lock.queue_free()
+	await speech.say(line)
+
+# the player comes near a honey drop: they stop, and the camera goes over to
+# it for a moment so it is clear what they are here for
+func show_honey(target: Node2D) -> void:
+	player.input_locked = true
+	speech.zoom_held = true
+	speech.zoom_to(focus_zoom, focus_time)
+	var pan: Tween = camera.create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	pan.tween_property(camera, "offset", target.global_position - player.global_position, focus_time)
+	pan.tween_interval(focus_hold)
+	pan.tween_callback(func() -> void:
+		speech.zoom_held = false
+		speech.zoom_to(speech.talk_zoom if speech.busy else 1.0, focus_time))
+	pan.tween_property(camera, "offset", Vector2.ZERO, focus_time)
+	await pan.finished
 	player.input_locked = false
+
+# the capsule has left (it plays its own sound). a moment later it reaches
+# the Moon, and the Moon is pleased. the player keeps control throughout.
+func play_capsule() -> void:
+	await get_tree().create_timer(capsule_time, false).timeout
+
+	# it arrived. the Moon swells for a moment. no smile sound here, that one
+	# belongs to the Moon waking up.
+	var size: Vector2 = moon.scale
+	var smile: Tween = moon.create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	smile.tween_property(moon, "scale", size * 1.15, 0.25)
+	smile.tween_property(moon, "scale", size, 0.35)
+	await smile.finished
 
 # night of the third day, at the empty summit. the sky goes dark, and the
 # thing that was always up there is not up there.
 func play_moon_wakes() -> void:
 	player.input_locked = true
-	await dialogue.say("Nothing. The hive is empty.")
+	await speech.say("Nothing. The hive is empty.")
 
 	# dusk. the clouds thin out so nothing is in the way of what comes next.
 	var tween: Tween = create_tween()
@@ -51,7 +81,7 @@ func play_moon_wakes() -> void:
 	var look: Tween = camera.create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	look.tween_property(camera, "offset:y", -220.0, 1.2)
 	await look.finished
-	await dialogue.say("The Moon is not there.")
+	await speech.say("The Moon is not there.")
 	await get_tree().create_timer(1.0, false).timeout
 
 	# and then it is.
@@ -67,13 +97,15 @@ func play_moon_wakes() -> void:
 
 	# it changes
 	moon.play("transform")
+	Sfx.play("moon_smile")
 	await moon.animation_finished
 	moon.play("angry")
-	await dialogue.say("It has not been fed.")
-	await dialogue.say("RUN.")
-
-	# camera back on the player, and go
-	var back: Tween = camera.create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	back.tween_property(camera, "offset:y", 0.0, 0.5)
+	await speech.say("It has not been fed.")
+	# the last line is said zoomed in, then the camera is thrown back down
+	# onto the player and the run starts. the level shakes it from there.
+	await speech.say("RUN.")
+	speech.zoom_to(1.0, chase_snap)
+	var back: Tween = camera.create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	back.tween_property(camera, "offset:y", 0.0, chase_snap)
 	await back.finished
 	player.input_locked = false

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/speech.gd" id="1_speech"]
+[ext_resource type="FontFile" uid="uid://bii73srylrbcr" path="res://assets/font/VCR_OSD_MONO_1.001.ttf" id="2_font"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_speech"]
+font = ExtResource("2_font")
+font_size = 20
+font_color = Color(0.976, 0.659, 0.145, 1)
+outline_size = 10
+outline_color = Color(0.996, 0.757, 0.027, 0.35)
+shadow_size = 2
+shadow_color = Color(0.239, 0.145, 0.129, 0.8)
+shadow_offset = Vector2(2, 2)
+
+[node name="Speech" type="Node2D"]
+z_index = 20
+position = Vector2(0, -56)
+script = ExtResource("1_speech")
+settings = SubResource("LabelSettings_speech")
+
+[node name="Lines" type="VBoxContainer" parent="."]
+offset_left = -210.0
+offset_right = 210.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 2

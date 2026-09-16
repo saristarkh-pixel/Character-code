@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://duw4q5htrcv8f"
+path="res://.godot/imported/Selecting an option (menu).mp3-ac77199a00c9bd1cc7bfd07e9f616e34.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Selecting an option (menu).mp3"
+dest_files=["res://.godot/imported/Selecting an option (menu).mp3-ac77199a00c9bd1cc7bfd07e9f616e34.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

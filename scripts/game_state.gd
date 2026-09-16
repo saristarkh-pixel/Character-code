@@ -15,6 +15,9 @@ var carrying: int = 0
 var escaping: bool = false
 # the opening plays once, not again after a failed escape
 var seen_opening: bool = false
+# the camera shows off a honey drop once per run, so players learn what the
+# honey is. every drop after that is left to them.
+var honey_shown: bool = false
 
 # back to the first morning. the menu calls this so a second playthrough does
 # not start halfway through the story.
@@ -23,6 +26,7 @@ func reset() -> void:
 	carrying = 0
 	escaping = false
 	seen_opening = false
+	honey_shown = false
 
 func is_final_day() -> bool:
 	return day >= FINAL_DAY

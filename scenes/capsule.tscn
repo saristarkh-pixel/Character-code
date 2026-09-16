@@ -1,0 +1,77 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/capsule.gd" id="1_capsule"]
+[ext_resource type="Texture2D" uid="uid://de2vmttbxec1p" path="res://assets/sprites/props/Sprite-Full Rocket sprites.png" id="2_rocket"]
+[ext_resource type="FontFile" uid="uid://bii73srylrbcr" path="res://assets/font/VCR_OSD_MONO_1.001.ttf" id="3_font"]
+
+[sub_resource type="AtlasTexture" id="at_capsule0"]
+atlas = ExtResource("2_rocket")
+region = Rect2(20, 1, 17, 35)
+
+[sub_resource type="AtlasTexture" id="at_capsule1"]
+atlas = ExtResource("2_rocket")
+region = Rect2(57, 1, 17, 35)
+
+[sub_resource type="AtlasTexture" id="at_capsule2"]
+atlas = ExtResource("2_rocket")
+region = Rect2(94, 1, 17, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_capsule"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_capsule1")
+}],
+"loop": true,
+"name": &"boarding",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_capsule0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_capsule2")
+}],
+"loop": true,
+"name": &"launch",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="rs_capsule"]
+size = Vector2(160, 140)
+
+[sub_resource type="LabelSettings" id="LabelSettings_prompt"]
+font = ExtResource("3_font")
+font_size = 20
+font_color = Color(0.976, 0.659, 0.145, 1)
+outline_size = 6
+outline_color = Color(0.239, 0.145, 0.129, 1)
+
+[node name="Capsule" type="Area2D"]
+script = ExtResource("1_capsule")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -21)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_capsule")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -60)
+shape = SubResource("rs_capsule")
+
+[node name="Prompt" type="Label" parent="."]
+offset_left = -110.0
+offset_top = -130.0
+offset_right = 110.0
+offset_bottom = -100.0
+text = "E  load honey"
+label_settings = SubResource("LabelSettings_prompt")
+horizontal_alignment = 1
+mouse_filter = 2

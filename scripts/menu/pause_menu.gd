@@ -20,6 +20,7 @@ func _ready() -> void:
 	for button: Button in root.find_children("*", "Button", true, false):
 		button.mouse_entered.connect(_on_hover.bind(button, true))
 		button.mouse_exited.connect(_on_hover.bind(button, false))
+		button.pressed.connect(Sfx.play.bind("select"))
 
 func _on_hover(button: Button, over: bool) -> void:
 	button.pivot_offset = button.size / 2.0

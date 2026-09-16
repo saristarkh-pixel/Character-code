@@ -13,7 +13,8 @@ const LEVEL_PATH: String = "res://scenes/level_01.tscn"
 @onready var dim: ColorRect = $UI/Control/Dim
 @onready var options_panel: PanelContainer = $UI/Control/OptionsPanel
 @onready var credits_panel: PanelContainer = $UI/Control/CreditsPanel
-@onready var volume_slider: HSlider = $UI/Control/OptionsPanel/OptionsBox/VolumeSlider
+@onready var music_slider: HSlider = $UI/Control/OptionsPanel/OptionsBox/MusicSlider
+@onready var sfx_slider: HSlider = $UI/Control/OptionsPanel/OptionsBox/SfxSlider
 @onready var fullscreen_button: Button = $UI/Control/OptionsPanel/OptionsBox/FullscreenButton
 @onready var quit_button: Button = $UI/Control/Buttons/QuitButton
 
@@ -32,11 +33,13 @@ func _ready() -> void:
 	$UI/Control/OptionsPanel/OptionsBox/BackButton.pressed.connect(close_panels)
 	$UI/Control/CreditsPanel/CreditsBox/BackButton.pressed.connect(close_panels)
 
-	volume_slider.value_changed.connect(_on_volume_changed)
+	music_slider.value_changed.connect(_on_volume_changed.bind("Music"))
+	sfx_slider.value_changed.connect(_on_volume_changed.bind("SFX"))
 	fullscreen_button.pressed.connect(_on_fullscreen_pressed)
 	# start the controls where the game actually is, without firing their
 	# signals and writing the same values straight back
-	volume_slider.set_value_no_signal(db_to_linear(AudioServer.get_bus_volume_db(0)))
+	music_slider.set_value_no_signal(db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))))
+	sfx_slider.set_value_no_signal(db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX"))))
 	_write_fullscreen_text()
 
 	# quit does nothing in a browser, so hide it on web builds
@@ -53,6 +56,7 @@ func _wire_hover() -> void:
 		for button: Button in panel.find_children("*", "Button", true, false):
 			button.mouse_entered.connect(_on_hover.bind(button, true))
 			button.mouse_exited.connect(_on_hover.bind(button, false))
+			button.pressed.connect(Sfx.play.bind("select"))
 
 func _on_hover(button: Button, over: bool) -> void:
 	# set here rather than in _ready because the button has no size until the
@@ -106,9 +110,10 @@ func _fade_out(node: Control) -> void:
 func _on_quit() -> void:
 	get_tree().quit()
 
-# the slider runs 0 to 1, the bus wants decibels
-func _on_volume_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
+# music and sound effects each have their own bus and slider. the slider runs
+# 0 to 1, the bus wants decibels.
+func _on_volume_changed(value: float, bus_name: String) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), linear_to_db(value))
 
 # a plain button rather than a CheckButton, because a CheckButton draws its
 # tick from the default theme's icons and there is no pixel art for one

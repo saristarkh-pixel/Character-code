@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8rqdj5v5grrm"
+path="res://.godot/imported/Step 4.mp3-dc033db1b0c1d389a2940cbe6d1b2a6f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Step 4.mp3"
+dest_files=["res://.godot/imported/Step 4.mp3-dc033db1b0c1d389a2940cbe6d1b2a6f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

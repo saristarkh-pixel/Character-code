@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b2oeot0ic4qrx"
+path="res://.godot/imported/MOONjump combo.mp3-860f84793944249fcb8141a42e7a3434.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/MOONjump combo.mp3"
+dest_files=["res://.godot/imported/MOONjump combo.mp3-860f84793944249fcb8141a42e7a3434.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

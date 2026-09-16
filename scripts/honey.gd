@@ -23,6 +23,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if not (body is CharacterBody2D):
 		return
 	collected.emit()
+	Sfx.play("honey")
 	# stop it being taken twice while the pop is still playing
 	set_deferred("monitoring", false)
 	bob.kill()

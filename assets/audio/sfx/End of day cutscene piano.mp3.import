@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bdpjwqi4rmul6"
+path="res://.godot/imported/End of day cutscene piano.mp3-24514f014c7842f8405e82c38bc5be88.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/End of day cutscene piano.mp3"
+dest_files=["res://.godot/imported/End of day cutscene piano.mp3-24514f014c7842f8405e82c38bc5be88.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

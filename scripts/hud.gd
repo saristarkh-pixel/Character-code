@@ -9,6 +9,9 @@ extends CanvasLayer
 # the clock turns this colour and starts pulsing when time is nearly up
 @export var panic_color: Color = Color(0.976, 0.412, 0.322, 1)
 @export var panic_at: float = 10.0
+# the honey icon is a jar strip, empty to full, one frame every 24px
+@export var jar_frames: int = 4
+@export var icon_scale: float = 2.0
 
 @onready var count_label: Label = $Root/HoneyCount
 @onready var day_label: Label = $Root/DayLabel
@@ -16,6 +19,9 @@ extends CanvasLayer
 @onready var hint_label: Label = $Root/HintLabel
 @onready var icon: Sprite2D = $Root/HoneyIcon
 @onready var fade: ColorRect = $Root/Fade
+# the level map: the square in the top-right corner, and the whole level on M
+@onready var minimap: Control = $Root/Minimap
+@onready var full_map: Control = $Root/FullMap
 
 var panicking: bool = false
 
@@ -35,13 +41,18 @@ func set_night() -> void:
 
 func set_honey(got: int, total: int) -> void:
 	count_label.text = "%d / %d" % [got, total]
+	# the jar fills up as the drops come in, full on the last one
+	var fill: int = 0
+	if total > 0:
+		fill = roundi(float(got) / float(total) * float(jar_frames - 1))
+	icon.region_rect.position.x = 1 + fill * 24
 
 # a quick bump on the icon so a pickup registers even if you were not
 # looking at the corner
 func bump() -> void:
 	var tween: Tween = icon.create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(icon, "scale", Vector2(4.2, 4.2), 0.08)
-	tween.tween_property(icon, "scale", Vector2(3, 3), 0.16)
+	tween.tween_property(icon, "scale", Vector2.ONE * icon_scale * 1.4, 0.08)
+	tween.tween_property(icon, "scale", Vector2.ONE * icon_scale, 0.16)
 
 # the night has no honey to count, so the corner goes quiet
 func hide_honey() -> void:
@@ -75,3 +86,9 @@ func fade_in() -> void:
 	var tween: Tween = fade.create_tween()
 	tween.tween_property(fade, "modulate:a", 0.0, day_fade)
 	await tween.finished
+
+# the level hands over its terrain and player once; the full map shares what
+# the corner map baked, markers included
+func setup_map(terrain: TileMapLayer, player: Node2D) -> void:
+	minimap.setup(terrain, player)
+	full_map.share(minimap)
