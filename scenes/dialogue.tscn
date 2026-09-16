@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/dialogue.gd" id="1_dialogue"]
+[ext_resource type="Theme" path="res://assets/ui/main_theme.tres" id="2_theme"]
+
+[node name="Dialogue" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_dialogue")
+
+[node name="Root" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+
+[node name="Panel" type="PanelContainer" parent="Root"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_left = 130.0
+offset_top = -196.0
+offset_right = -130.0
+offset_bottom = -64.0
+
+[node name="Line" type="Label" parent="Root/Panel"]
+theme_override_colors/font_color = Color(0.976, 0.859, 0.576, 1)
+theme_override_font_sizes/font_size = 26
+autowrap_mode = 3
+horizontal_alignment = 1
+vertical_alignment = 1

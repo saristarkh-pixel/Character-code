@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_card"]
+[ext_resource type="Theme" path="res://assets/ui/main_theme.tres" id="2_theme"]
+
+[node name="Card" type="CanvasLayer"]
+layer = 12
+process_mode = 3
+script = ExtResource("1_card")
+
+[node name="Root" type="Control" parent="."]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+
+[node name="Dim" type="ColorRect" parent="Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.03, 0.03, 0.78)
+
+[node name="Panel" type="PanelContainer" parent="Root"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = -290.0
+offset_top = -200.0
+offset_right = 290.0
+offset_bottom = 200.0
+
+[node name="PanelBox" type="VBoxContainer" parent="Root/Panel"]
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Root/Panel/PanelBox"]
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 40
+text = "Title"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Root/Panel/PanelBox"]
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.976, 0.859, 0.576, 1)
+theme_override_font_sizes/font_size = 21
+autowrap_mode = 3
+text = "Body"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="Root/Panel/PanelBox"]
+text = "Try again"
+
+[node name="MenuButton" type="Button" parent="Root/Panel/PanelBox"]
+text = "Quit to menu"

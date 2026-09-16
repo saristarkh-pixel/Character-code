@@ -11,14 +11,22 @@ config_version=5
 [application]
 
 config/name="100% finish Hungry Moon"
-run/main_scene="uid://b72i7wp5fbdsd"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameState="*res://scripts/game_state.gd"
 
 [display]
 
 window/size/mode=2
 window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="100% finish Hungry Moon"
 
 [input]
 

@@ -2,72 +2,327 @@
 
 [ext_resource type="TileSet" uid="uid://dw8nxmvdecw6l" path="res://assets/tilesets/ground_tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
-[ext_resource type="Script" uid="uid://d2xexonjx85ud" path="res://scripts/level_terrain.gd" id="3_terrain"]
+[ext_resource type="Script" uid="uid://bx3bnwklg6e5n" path="res://scripts/level.gd" id="3_level"]
 [ext_resource type="Texture2D" uid="uid://b7jp6ope46ucn" path="res://assets/sprites/props/Sprite-House.png" id="4_house"]
 [ext_resource type="Texture2D" uid="uid://d3pfx4ijnwi7m" path="res://assets/sprites/props/Sprite-Tree.png" id="5_tree"]
 [ext_resource type="Texture2D" uid="uid://csfm7ksdaa2cf" path="res://assets/sprites/props/Sprite-bushess.png" id="6_bush"]
 [ext_resource type="Texture2D" uid="uid://de2vmttbxec1p" path="res://assets/sprites/props/Sprite-Full Rocket sprites.png" id="7_rocket"]
 [ext_resource type="Texture2D" uid="uid://bwpv48a623d0d" path="res://assets/sprites/items/Sprite-Here is honey.png" id="8_hive"]
-[ext_resource type="Texture2D" uid="uid://cymumbonosxv" path="res://assets/sprites/items/Sprite-Honey sot.png" id="9_honey"]
+[ext_resource type="PackedScene" path="res://scenes/pause_menu.tscn" id="10_pause"]
+[ext_resource type="PackedScene" path="res://scenes/honey.tscn" id="11_honeyscene"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="12_hud"]
+[ext_resource type="Texture2D" uid="uid://ksipigom6xmc" path="res://assets/sprites/background/sky_day.png" id="13_skyday"]
+[ext_resource type="Texture2D" uid="uid://dspv5cdyd5238" path="res://assets/sprites/background/sky_night.png" id="14_skynight"]
+[ext_resource type="Texture2D" uid="uid://vsm0d5pobhy0" path="res://assets/sprites/background/fog_day.png" id="15_fogday"]
+[ext_resource type="Texture2D" uid="uid://d1ifbsgxi654p" path="res://assets/sprites/background/fog_night.png" id="16_fognight"]
+[ext_resource type="Texture2D" uid="uid://dxqh0wwtg3iyb" path="res://assets/sprites/moon/moon_day.png" id="17_moonday"]
+[ext_resource type="Texture2D" uid="uid://d1y1ncucp7slb" path="res://assets/sprites/moon/moon_night.png" id="18_moonnight"]
+[ext_resource type="Texture2D" uid="uid://dloo73g4d7nyw" path="res://assets/sprites/moon/moon_transform.png" id="19_moontrans"]
+[ext_resource type="Texture2D" uid="uid://6t5i33spyhvi" path="res://assets/sprites/moon/moon_idle.png" id="20_moonidle"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="21_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/card.tscn" id="22_card"]
+[ext_resource type="Script" uid="uid://iwjh4mde5evr" path="res://scripts/cutscene.gd" id="23_cutscene"]
 
-[node name="Level01" type="Node2D" unique_id=5847467]
+[sub_resource type="AtlasTexture" id="at_moon_a0"]
+atlas = ExtResource("20_moonidle")
+region = Rect2(10, 1, 31, 31)
 
-[node name="Terrain" type="TileMapLayer" parent="." unique_id=307661459]
+[sub_resource type="AtlasTexture" id="at_moon_a1"]
+atlas = ExtResource("20_moonidle")
+region = Rect2(51, 1, 31, 31)
+
+[sub_resource type="AtlasTexture" id="at_moon_a2"]
+atlas = ExtResource("20_moonidle")
+region = Rect2(92, 1, 31, 31)
+
+[sub_resource type="AtlasTexture" id="at_moon_a3"]
+atlas = ExtResource("20_moonidle")
+region = Rect2(133, 1, 31, 31)
+
+[sub_resource type="AtlasTexture" id="at_moon_day"]
+atlas = ExtResource("17_moonday")
+region = Rect2(1, 1, 31, 31)
+
+[sub_resource type="AtlasTexture" id="at_moon_night"]
+atlas = ExtResource("18_moonnight")
+region = Rect2(1, 1, 31, 31)
+
+[sub_resource type="AtlasTexture" id="at_moon_t0"]
+atlas = ExtResource("19_moontrans")
+region = Rect2(10, 1, 31, 31)
+
+[sub_resource type="AtlasTexture" id="at_moon_t1"]
+atlas = ExtResource("19_moontrans")
+region = Rect2(51, 1, 31, 31)
+
+[sub_resource type="AtlasTexture" id="at_moon_t2"]
+atlas = ExtResource("19_moontrans")
+region = Rect2(92, 1, 31, 31)
+
+[sub_resource type="AtlasTexture" id="at_moon_t3"]
+atlas = ExtResource("19_moontrans")
+region = Rect2(133, 1, 31, 31)
+
+[sub_resource type="AtlasTexture" id="at_moon_t4"]
+atlas = ExtResource("19_moontrans")
+region = Rect2(174, 1, 31, 31)
+
+[sub_resource type="AtlasTexture" id="at_moon_t5"]
+atlas = ExtResource("19_moontrans")
+region = Rect2(215, 1, 31, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_moon"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_moon_a0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_moon_a1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_moon_a2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_moon_a3")
+}],
+"loop": 1,
+"name": &"angry",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_moon_day")
+}],
+"loop": 1,
+"name": &"day",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_moon_night")
+}],
+"loop": 1,
+"name": &"night",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_moon_t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_moon_t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_moon_t2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_moon_t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_moon_t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_moon_t5")
+}],
+"loop": 0,
+"name": &"transform",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="rs_lockwall"]
+size = Vector2(40, 320)
+
+[sub_resource type="RectangleShape2D" id="rs_door"]
+size = Vector2(210, 150)
+
+[sub_resource type="AtlasTexture" id="at_rocket1"]
+atlas = ExtResource("7_rocket")
+region = Rect2(57, 1, 17, 35)
+
+[sub_resource type="AtlasTexture" id="at_rocket0"]
+atlas = ExtResource("7_rocket")
+region = Rect2(20, 1, 17, 35)
+
+[sub_resource type="AtlasTexture" id="at_rocket2"]
+atlas = ExtResource("7_rocket")
+region = Rect2(94, 1, 17, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rocket"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_rocket1")
+}],
+"loop": 1,
+"name": &"boarding",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_rocket0")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_rocket2")
+}],
+"loop": 1,
+"name": &"launch",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="rs_rocketarea"]
+size = Vector2(130, 150)
+
+[sub_resource type="RectangleShape2D" id="rs_hive"]
+size = Vector2(110, 110)
+
+[node name="Level01" type="Node2D" unique_id=1725940496]
+script = ExtResource("3_level")
+
+[node name="SkyLayer" type="CanvasLayer" parent="." unique_id=1408819114]
+layer = -100
+
+[node name="SkyDay" type="Sprite2D" parent="SkyLayer" unique_id=36313746]
+position = Vector2(576, 324)
+scale = Vector2(4, 4)
+texture = ExtResource("13_skyday")
+
+[node name="SkyNight" type="Sprite2D" parent="SkyLayer" unique_id=1188061185]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(576, 324)
+scale = Vector2(4, 4)
+texture = ExtResource("14_skynight")
+
+[node name="Background" type="Node2D" parent="." unique_id=1537945619]
+z_index = -90
+
+[node name="Moon" type="Parallax2D" parent="Background" unique_id=2091811451]
+scroll_scale = Vector2(0.05, 0.05)
+
+[node name="MoonSprite" type="AnimatedSprite2D" parent="Background/Moon" unique_id=1319261931]
+position = Vector2(900, 150)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_moon")
+animation = &"day"
+
+[node name="Fog" type="Parallax2D" parent="Background" unique_id=341121462]
+scroll_scale = Vector2(0.3, 0.12)
+repeat_size = Vector2(2560, 0)
+autoscroll = Vector2(-7, 0)
+repeat_times = 3
+
+[node name="FogDay" type="Sprite2D" parent="Background/Fog" unique_id=49586917]
+scale = Vector2(4, 4)
+texture = ExtResource("15_fogday")
+centered = false
+
+[node name="FogDayMirror" type="Sprite2D" parent="Background/Fog" unique_id=397054843]
+position = Vector2(1280, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("15_fogday")
+centered = false
+flip_h = true
+
+[node name="FogNight" type="Sprite2D" parent="Background/Fog" unique_id=1417020210]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("16_fognight")
+centered = false
+
+[node name="FogNightMirror" type="Sprite2D" parent="Background/Fog" unique_id=2119729745]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1280, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("16_fognight")
+centered = false
+flip_h = true
+
+[node name="Terrain" type="TileMapLayer" parent="." unique_id=164997200]
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAAAAAMAAAABAAAAAAAAAAQAAAAAAAIAAAARAAQAAAAAAAAAAAASAAQAAAAAAAAAAAATAAQAAAAAAAAAAAAUAAQAAAAAAAAAAAAVAAQAAAABAAAAAAAAAAUAAAABAAIAAAAQAAUAAAAAAAAAAAARAAUAAAAAAAIAAAASAAUAAAABAAIAAAATAAUAAAABAAEAAAAUAAUAAAAAAAIAAAAVAAUAAAABAAIAAAAAAAYAAAABAAEAAAAPAAYAAAAAAAAAAAAQAAYAAAAAAAIAAAARAAYAAAABAAIAAAASAAYAAAABAAEAAAATAAYAAAAAAAIAAAAUAAYAAAABAAIAAAAVAAYAAAABAAEAAAAAAAcAAAAAAAIAAAAOAAcAAAAAAAAAAAAPAAcAAAAAAAIAAAAQAAcAAAABAAIAAAARAAcAAAABAAEAAAASAAcAAAAAAAIAAAATAAcAAAABAAIAAAAUAAcAAAABAAEAAAAVAAcAAAAAAAIAAAAAAAgAAAABAAIAAAANAAgAAAAAAAAAAAAOAAgAAAAAAAIAAAAPAAgAAAABAAIAAAAQAAgAAAABAAEAAAARAAgAAAAAAAIAAAASAAgAAAABAAIAAAATAAgAAAABAAEAAAAUAAgAAAAAAAIAAAAVAAgAAAABAAIAAAAAAAkAAAABAAEAAAAMAAkAAAAAAAAAAAANAAkAAAAAAAIAAAAOAAkAAAABAAIAAAAPAAkAAAABAAEAAAAQAAkAAAAAAAIAAAARAAkAAAABAAIAAAASAAkAAAABAAEAAAATAAkAAAAAAAIAAAAUAAkAAAABAAIAAAAVAAkAAAABAAEAAAAAAAoAAAAAAAIAAAABAAoAAAAAAAAAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAABAAAAAAALAAoAAAAAAAAAAAAMAAoAAAAAAAIAAAANAAoAAAABAAIAAAAOAAoAAAABAAEAAAAPAAoAAAAAAAIAAAAQAAoAAAABAAIAAAARAAoAAAABAAEAAAASAAoAAAAAAAIAAAATAAoAAAABAAIAAAAUAAoAAAABAAEAAAAVAAoAAAAAAAIAAAAAAAsAAAABAAIAAAABAAsAAAABAAEAAAACAAsAAAAAAAIAAAADAAsAAAABAAIAAAAEAAsAAAABAAEAAAAFAAsAAAAAAAIAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAIAAAAMAAsAAAABAAIAAAANAAsAAAABAAEAAAAOAAsAAAAAAAIAAAAPAAsAAAABAAIAAAAQAAsAAAABAAEAAAARAAsAAAAAAAIAAAASAAsAAAABAAIAAAATAAsAAAABAAEAAAAUAAsAAAAAAAIAAAAVAAsAAAABAAIAAAACAAUAAAAAAAAAAAABAAUAAAAAAAAAAAADAAUAAAABAAAAAAA=")
 tile_set = ExtResource("1_tiles")
-script = ExtResource("3_terrain")
 
-[node name="House" type="Sprite2D" parent="." unique_id=1893936549]
+[node name="House" type="Sprite2D" parent="." unique_id=501656914]
 position = Vector2(336, 850.5)
 scale = Vector2(3, 3)
 texture = ExtResource("4_house")
 region_enabled = true
 region_rect = Rect2(1, 1, 144, 73)
 
-[node name="Tree" type="Sprite2D" parent="." unique_id=1630955803]
+[node name="HouseLock" type="StaticBody2D" parent="." unique_id=1970449083 groups=["no_climb"]]
+
+[node name="WallLeft" type="CollisionShape2D" parent="HouseLock" unique_id=1071314841]
+position = Vector2(180, 820)
+shape = SubResource("rs_lockwall")
+
+[node name="WallRight" type="CollisionShape2D" parent="HouseLock" unique_id=1835889578]
+position = Vector2(500, 820)
+shape = SubResource("rs_lockwall")
+
+[node name="HouseDoor" type="Area2D" parent="." unique_id=342632692]
+position = Vector2(336, 890)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HouseDoor" unique_id=1783251504]
+shape = SubResource("rs_door")
+
+[node name="Tree" type="Sprite2D" parent="." unique_id=609493655]
 position = Vector2(1760, 298.5)
 scale = Vector2(3, 3)
 texture = ExtResource("5_tree")
 region_enabled = true
 region_rect = Rect2(1, 1, 43, 57)
 
-[node name="Bush" type="Sprite2D" parent="." unique_id=586394133]
+[node name="Bush" type="Sprite2D" parent="." unique_id=416733546]
 position = Vector2(760, 1011)
 scale = Vector2(3, 3)
 texture = ExtResource("6_bush")
 region_enabled = true
 region_rect = Rect2(1, 1, 38, 30)
 
-[node name="Rocket" type="Sprite2D" parent="." unique_id=56377743]
-position = Vector2(190, 438)
+[node name="Rocket" type="AnimatedSprite2D" parent="." unique_id=2049060596]
+position = Vector2(190, 448.5)
 scale = Vector2(3, 3)
-texture = ExtResource("7_rocket")
-region_enabled = true
-region_rect = Rect2(20, 1, 17, 28)
+sprite_frames = SubResource("SpriteFrames_rocket")
+animation = &"idle"
 
-[node name="Hive" type="Sprite2D" parent="." unique_id=847542106]
+[node name="RocketArea" type="Area2D" parent="." unique_id=14323261]
+position = Vector2(190, 420)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RocketArea" unique_id=612625530]
+shape = SubResource("rs_rocketarea")
+
+[node name="Hive" type="Area2D" parent="." unique_id=2061830459]
 position = Vector2(1900, 349.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hive" unique_id=2054650393]
 scale = Vector2(3, 3)
 texture = ExtResource("8_hive")
 region_enabled = true
 region_rect = Rect2(1, 1, 23, 23)
 
-[node name="Honey1" type="Sprite2D" parent="." unique_id=208540869]
-position = Vector2(1899, 277)
-scale = Vector2(3, 3)
-texture = ExtResource("9_honey")
-region_enabled = true
-region_rect = Rect2(1, 1, 13, 15)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hive" unique_id=1232708617]
+shape = SubResource("rs_hive")
 
-[node name="LabelMoon" type="Label" parent="." unique_id=1857756503]
-offset_left = 980.0
-offset_top = 110.0
-offset_right = 1320.0
-offset_bottom = 180.0
-theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
-theme_override_font_sizes/font_size = 52
-text = "MOON"
-
-[node name="Player" parent="." unique_id=399087604 instance=ExtResource("2_player")]
+[node name="Player" parent="." unique_id=130942423 instance=ExtResource("2_player")]
 position = Vector2(288, 830)
+
+[node name="Honey" type="Node2D" parent="." unique_id=2139853829]
+
+[node name="Honey1" parent="Honey" unique_id=1921982171 instance=ExtResource("11_honeyscene")]
+position = Vector2(1899, 277)
+
+[node name="HUD" parent="." unique_id=423166283 instance=ExtResource("12_hud")]
+
+[node name="Dialogue" parent="." unique_id=852311131 instance=ExtResource("21_dialogue")]
+
+[node name="Card" parent="." unique_id=1262682306 instance=ExtResource("22_card")]
+
+[node name="Cutscene" type="Node" parent="." unique_id=1824248803]
+script = ExtResource("23_cutscene")
+
+[node name="PauseMenu" parent="." unique_id=155487878 instance=ExtResource("10_pause")]

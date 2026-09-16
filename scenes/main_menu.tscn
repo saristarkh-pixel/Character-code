@@ -1,0 +1,226 @@
+[gd_scene format=4 uid="uid://v1i1wk6dp4oj"]
+
+[ext_resource type="Script" uid="uid://ywcajvqo3c62" path="res://scripts/menu/main_menu.gd" id="1_menu"]
+[ext_resource type="Theme" uid="uid://cgu8palqfempk" path="res://assets/ui/main_theme.tres" id="2_theme"]
+[ext_resource type="TileSet" uid="uid://dw8nxmvdecw6l" path="res://assets/tilesets/ground_tileset.tres" id="3_tiles"]
+[ext_resource type="Texture2D" uid="uid://b7jp6ope46ucn" path="res://assets/sprites/props/Sprite-House.png" id="4_house"]
+[ext_resource type="Texture2D" uid="uid://d3pfx4ijnwi7m" path="res://assets/sprites/props/Sprite-Tree.png" id="5_tree"]
+[ext_resource type="Texture2D" uid="uid://csfm7ksdaa2cf" path="res://assets/sprites/props/Sprite-bushess.png" id="6_bush"]
+[ext_resource type="Texture2D" uid="uid://de2vmttbxec1p" path="res://assets/sprites/props/Sprite-Full Rocket sprites.png" id="7_rocket"]
+[ext_resource type="Texture2D" uid="uid://bwpv48a623d0d" path="res://assets/sprites/items/Sprite-Here is honey.png" id="8_hive"]
+[ext_resource type="Texture2D" uid="uid://ksipigom6xmc" path="res://assets/sprites/background/sky_day.png" id="13_skyday"]
+[ext_resource type="Texture2D" uid="uid://vsm0d5pobhy0" path="res://assets/sprites/background/fog_day.png" id="15_fogday"]
+[ext_resource type="Texture2D" uid="uid://dxqh0wwtg3iyb" path="res://assets/sprites/moon/moon_day.png" id="17_moonday"]
+
+[node name="MainMenu" type="Node2D" unique_id=1580262864]
+script = ExtResource("1_menu")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1012972563]
+
+[node name="Control" type="Control" parent="UI" unique_id=1443670106]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+
+[node name="Sky" type="Sprite2D" parent="UI/Control" unique_id=921234995]
+position = Vector2(576, 324)
+scale = Vector2(4, 4)
+texture = ExtResource("13_skyday")
+
+[node name="Moon" type="Sprite2D" parent="UI/Control" unique_id=1800485277]
+position = Vector2(944, 128)
+scale = Vector2(4, 4)
+texture = ExtResource("17_moonday")
+region_enabled = true
+region_rect = Rect2(1, 1, 31, 31)
+
+[node name="Clouds" type="Sprite2D" parent="UI/Control" unique_id=1980309582]
+position = Vector2(576, 324)
+scale = Vector2(4, 4)
+texture = ExtResource("15_fogday")
+
+[node name="Scenery" type="Node2D" parent="UI/Control" unique_id=572702620]
+
+[node name="Ground" type="TileMapLayer" parent="UI/Control/Scenery" unique_id=1157433533]
+position = Vector2(0, 552)
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAAAAEAAAABAAIAAAABAAEAAAABAAIAAAACAAEAAAABAAIAAAADAAEAAAABAAIAAAAEAAEAAAABAAIAAAAFAAEAAAABAAIAAAAGAAEAAAABAAIAAAAHAAEAAAABAAIAAAAIAAEAAAABAAIAAAAJAAEAAAABAAIAAAAKAAEAAAABAAIAAAALAAEAAAABAAIAAAA=")
+tile_set = ExtResource("3_tiles")
+
+[node name="House" type="Sprite2D" parent="UI/Control/Scenery" unique_id=593059169]
+position = Vector2(200, 442.5)
+scale = Vector2(3, 3)
+texture = ExtResource("4_house")
+region_enabled = true
+region_rect = Rect2(1, 1, 144, 73)
+
+[node name="Bush" type="Sprite2D" parent="UI/Control/Scenery" unique_id=1941861278]
+position = Vector2(840, 507)
+scale = Vector2(3, 3)
+texture = ExtResource("6_bush")
+region_enabled = true
+region_rect = Rect2(1, 1, 38, 30)
+
+[node name="Tree" type="Sprite2D" parent="UI/Control/Scenery" unique_id=539613505]
+position = Vector2(985, 466.5)
+scale = Vector2(3, 3)
+texture = ExtResource("5_tree")
+region_enabled = true
+region_rect = Rect2(1, 1, 43, 57)
+
+[node name="Hive" type="Sprite2D" parent="UI/Control/Scenery" unique_id=1129566628]
+position = Vector2(1088, 517.5)
+scale = Vector2(3, 3)
+texture = ExtResource("8_hive")
+region_enabled = true
+region_rect = Rect2(1, 1, 23, 23)
+
+[node name="Rocket" type="Sprite2D" parent="UI/Control/Scenery" unique_id=1917079830]
+position = Vector2(1010, 247.5)
+scale = Vector2(3, 3)
+texture = ExtResource("7_rocket")
+region_enabled = true
+region_rect = Rect2(94, 1, 17, 35)
+
+[node name="TitleLabel" type="Label" parent="UI/Control" unique_id=3043397]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 78.0
+offset_bottom = 196.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_colors/font_shadow_color = Color(0.11, 0.06, 0.05, 0.75)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 6
+theme_override_font_sizes/font_size = 82
+text = "Hungry Moon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="UI/Control" unique_id=859776469]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -110.0
+offset_right = 150.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="StartButton" type="Button" parent="UI/Control/Buttons" unique_id=1020161531]
+layout_mode = 2
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="UI/Control/Buttons" unique_id=1582187174]
+layout_mode = 2
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="UI/Control/Buttons" unique_id=315514478]
+layout_mode = 2
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="UI/Control/Buttons" unique_id=1358610078]
+layout_mode = 2
+text = "Quit"
+
+[node name="Dim" type="ColorRect" parent="UI/Control" unique_id=1619553879]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.03, 0.03, 0.6)
+
+[node name="OptionsPanel" type="PanelContainer" parent="UI/Control" unique_id=1192834045]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -180.0
+offset_right = 240.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsBox" type="VBoxContainer" parent="UI/Control/OptionsPanel" unique_id=1943473060]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="OptionsTitle" type="Label" parent="UI/Control/OptionsPanel/OptionsBox" unique_id=602129747]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 38
+text = "Options"
+horizontal_alignment = 1
+
+[node name="VolumeLabel" type="Label" parent="UI/Control/OptionsPanel/OptionsBox" unique_id=131381702]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="UI/Control/OptionsPanel/OptionsBox" unique_id=1646304845]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="FullscreenButton" type="Button" parent="UI/Control/OptionsPanel/OptionsBox" unique_id=477743024]
+layout_mode = 2
+text = "Fullscreen: Off"
+
+[node name="BackButton" type="Button" parent="UI/Control/OptionsPanel/OptionsBox" unique_id=487034200]
+layout_mode = 2
+text = "Back"
+
+[node name="CreditsPanel" type="PanelContainer" parent="UI/Control" unique_id=1477421426]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -180.0
+offset_right = 240.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreditsBox" type="VBoxContainer" parent="UI/Control/CreditsPanel" unique_id=231747638]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="CreditsTitle" type="Label" parent="UI/Control/CreditsPanel/CreditsBox" unique_id=842593298]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.996, 0.757, 0.027, 1)
+theme_override_font_sizes/font_size = 38
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="CreditsText" type="Label" parent="UI/Control/CreditsPanel/CreditsBox" unique_id=1596890819]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 22
+text = "Andrei Louise Amrinto
+Aristarkh
+
+Made in Godot 4.7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="UI/Control/CreditsPanel/CreditsBox" unique_id=291020569]
+layout_mode = 2
+text = "Back"
